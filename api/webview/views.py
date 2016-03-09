@@ -28,7 +28,8 @@ class DocumentList(generics.ListAPIView):
     def get_queryset(self):
         """ Return all documents
         """
-        return Document.objects.all()
+        user = self.request.user
+        return Document.objects.filter(documenter=user)
 
 
 class DocumentsFromSource(generics.ListAPIView):
